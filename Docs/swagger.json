@@ -1,0 +1,73 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Azure OCR API Wrapper",
+      "description": "An API to extract text from images using Azure's OCR service."
+    },
+    "host": "209.38.65.50:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Health Check",
+          "description": "Returns a simple message to verify the server is running.",
+          "responses": {
+            "200": {
+              "description": "Server is running",
+              "schema": {
+                "type": "string",
+                "example": "Server is up and running!"
+              }
+            }
+          }
+        }
+      },
+      "/ocr": {
+        "post": {
+          "summary": "Extract text from an image",
+          "description": "Takes an image URL and extracts text using Azure OCR.",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "imageUrl": {
+                    "type": "string",
+                    "example": "https://www.example.com/sample-image.jpg",
+                    "description": "URL of the image to process."
+                  }
+                },
+                "required": ["imageUrl"]
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Text extracted successfully.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "object",
+                    "description": "Text regions extracted from the image."
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request - Missing or invalid imageUrl."
+            },
+            "500": {
+              "description": "Internal Server Error - Azure OCR failure."
+            }
+          }
+        }
+      }
+    }
+  }
+  
