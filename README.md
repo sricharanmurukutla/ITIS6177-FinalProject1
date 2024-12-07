@@ -10,7 +10,7 @@ This project wraps Azure's OCR API to provide an endpoint for extracting text fr
 ## Example Request
 ### **Endpoint**
 ```plaintext
-POST http://209.38.65.50:i3000/ocr
+POST http://209.38.65.50:3000/ocr
 
 Request Headers
 
